@@ -19,7 +19,7 @@ class Config(object):
     )
     TG_BOT_USERNAME = None
     TZ = os.environ.get("TZ", "Asia/Baghdad")
-    UPSTREAM_REPO = os.environ.get("UPSTREAM_REPO", "https://github.com/odisho1997/CatArabic")
+    UPSTREAM_REPO = os.environ.get("UPSTREAM_REPO", "https://github.com/ODY-IQ/CatArabic")
     EXTERNAL_REPO = os.environ.get("EXTERNAL_REPO", None)
     if bool(EXTERNAL_REPO and (EXTERNAL_REPO.lower() != "false")):
         if not url(EXTERNAL_REPO):
