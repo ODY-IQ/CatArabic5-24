@@ -1,7 +1,4 @@
-Telethon==1.25.2
-apscheduler
-selenium
-somnium
+Telethon
 telethon-session-sqlalchemy
 setuptools
 wheel
@@ -12,7 +9,6 @@ cfscrape
 cloudscraper
 cowpy
 colour
-fake_useragent
 cryptg
 csvfaker
 fontTools
@@ -77,10 +73,23 @@ validators
 vcsi
 wand
 wikipedia
-user_agent
 ujson
+TgCrypto
+ffmpeg-python
+youtube-search-python==1.4.9
+youtube-search
+gitpython
+yt-dlp
+youtube_dl
+moviepy
+randomstuff.py
+git+https://github.com/pytgcalls/pytgcalls
+pyminizip
+pybase64
+covid
+googletrans
+user_agent
+fake_useragent
 
 git+https://github.com/buddhhu/img2html.git
-git+https://github.com/alexmercerind/youtube-search-python
 git+https://github.com/sandy1709/py-googletrans
-git+https://github.com/yt-dlp/yt-dlp
