@@ -1,7 +1,7 @@
-FROM odisho1997/CatArabic:slim-buster
+FROM ODY-IQ/CatArabic:slim-buster
 
 
-RUN git clone https://github.com/odisho1997/CatArabic.git /root/userbot
+RUN git clone https://github.com/ODY-IQ/CatArabic.git /root/userbot
 
 WORKDIR /root/userbot
 
