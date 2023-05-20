@@ -7,7 +7,7 @@ from .core.session import catub
 from .sql_helper.globals import addgvar, delgvar, gvarstatus
 __version__ = "7.7"
 __license__ = "رخصة جنو أفيرو العمومية v3.0"
-__author__ = "القط العربي <https://github.com/odisho1997/CatArabic>"
+__author__ = "القط العربي <https://github.com/ODY-IQ/CatArabic>"
 __copyright__ = "حقوق الطبع والنشر لـ القط العربي (C) 2020 - 2021  " + __author__
 catub.version = __version__
 catub.tgbot.version = __version__
@@ -16,7 +16,7 @@ bot = catub
 StartTime = time.time()
 catversion = "7.6"
 if Config.UPSTREAM_REPO == "CatArabic":
-    UPSTREAM_REPO_URL = "https://github.com/telethonArab/Arab"
+    UPSTREAM_REPO_URL = "https://github.com/ODY-IQ/CatArabic"
 else:
     UPSTREAM_REPO_URL = Config.UPSTREAM_REPO
 if Config.PRIVATE_GROUP_BOT_API_ID == 0:
