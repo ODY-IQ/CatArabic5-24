@@ -1,48 +1,24 @@
-import signal
-import sys
 import time
-
 import heroku3
+
 from .Config import Config
 from .core.logger import logging
-from .core.session import catub
-from .helpers.functions.converter import Convert
-from .helpers.functions.musictool import *
-from .helpers.utils.utils import runasync
+from .core.session import iqthon
 from .sql_helper.globals import addgvar, delgvar, gvarstatus
-
-__version__ = "3.0.6"
+__version__ = "7.7"
 __license__ = "رخصة جنو أفيرو العمومية v3.0"
 __author__ = "القط العربي <https://github.com/odisho1997/CatArabic>"
 __copyright__ = "حقوق الطبع والنشر لـ القط العربي (C) 2020 - 2021  " + __author__
-
-catub.version = __version__
-catub.tgbot.version = __version__
+iqthon.version = __version__
+iqthon.tgbot.version = __version__
 LOGS = logging.getLogger("CatArabic")
-bot = catub
-tbot = tgbot
-
+bot = iqthon
 StartTime = time.time()
-catversion = "3.0.6"
-
-
-def close_connection(*_):
-    print("تم اغلاق الاتصال بالسورس")
-    runasync(userbot.disconnect())
-    sys.exit(143)
-
-
-signal.signal(signal.SIGTERM, close_connection)
-
-UPSTREAM_REPO_URL = Config.UPSTREAM_REPO
-
-if Config.UPSTREAM_REPO == "badcat":
-    UPSTREAM_REPO_URL = "https://github.com/Jisan09/catuserbot"
-elif Config.UPSTREAM_REPO == "CatArabic":
-    UPSTREAM_REPO_URL = "https://github.com/ody97/CatArabic"
+catversion = "7.6"
+if Config.UPSTREAM_REPO == "CatArabic":
+    UPSTREAM_REPO_URL = "https://github.com/telethonArab/Arab"
 else:
     UPSTREAM_REPO_URL = Config.UPSTREAM_REPO
-
 if Config.PRIVATE_GROUP_BOT_API_ID == 0:
     if gvarstatus("PRIVATE_GROUP_BOT_API_ID") is None:
         Config.BOTLOG = False
@@ -57,7 +33,6 @@ else:
     else:
         Config.BOTLOG_CHATID = Config.PRIVATE_GROUP_BOT_API_ID
     Config.BOTLOG = True
-
 if Config.PM_LOGGER_GROUP_ID == 0:
     if gvarstatus("PM_LOGGER_GROUP_ID") is None:
         Config.PM_LOGGER_GROUP_ID = -100
@@ -68,26 +43,22 @@ elif str(Config.PM_LOGGER_GROUP_ID)[0] != "-":
 
 try:
     if Config.HEROKU_API_KEY is not None or Config.HEROKU_APP_NAME is not None:
-        HEROKU_APP = heroku3.from_key(Config.HEROKU_API_KEY).apps()[
-            Config.HEROKU_APP_NAME
-        ]
+        HEROKU_APP = heroku3.from_key(Config.HEROKU_API_KEY).apps()[Config.HEROKU_APP_NAME]
     else:
         HEROKU_APP = None
 except Exception:
     HEROKU_APP = None
-
-
 COUNT_MSG = 0
+ISAFK = False
+AFKREASON = None
 USERS = {}
 COUNT_PM = {}
 LASTMSG = {}
 CMD_HELP = {}
-ISAFK = False
-AFKREASON = None
 CMD_LIST = {}
 SUDO_LIST = {}
-INT_PLUG = ""
 LOAD_PLUG = {}
+INT_PLUG = ""
 BOTLOG = Config.BOTLOG
 BOTLOG_CHATID = Config.BOTLOG_CHATID
 PM_LOGGER_GROUP_ID = Config.PM_LOGGER_GROUP_ID
