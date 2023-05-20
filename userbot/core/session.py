@@ -6,7 +6,7 @@ from telethon.sessions import StringSession
 from ..Config import Config
 from .client import CatUserBotClient
 
-__version__ = "2.10.6"
+__version__ = "5.0.0"
 
 loop = None
 
