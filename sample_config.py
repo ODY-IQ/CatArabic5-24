@@ -1,5 +1,7 @@
 import os
 from typing import Set
+from validators.url import url
+
 class Config(object):
     LOGGER = True
     ALIVE_NAME = os.environ.get("ALIVE_NAME", "CatArabic")
@@ -13,13 +15,41 @@ class Config(object):
     TZ = os.environ.get("TZ", "Asia/Baghdad")
     UPSTREAM_REPO = os.environ.get("UPSTREAM_REPO", "https://github.com/ODY-IQ/CatArabic")
     AUTONAME = os.environ.get("AUTONAME", "CatArabic")
+    
+        EXTERNAL_REPO = os.environ.get("EXTERNAL_REPO", None)
+    if bool(EXTERNAL_REPO and (EXTERNAL_REPO.lower() != "false")):
+        if not url(EXTERNAL_REPO):
+            EXTERNAL_REPO = "https://github.com/jmthonr/JmPlugins"
+    else:
+        EXTERNAL_REPO = None
+    # فارات الميوزك
+    VCMODE = os.environ.get("VCMODE", False)
+    PORT = os.environ.get("PORT", "8080")
+    VCMODE = bool(VCMODE and (VCMODE.lower() != "false"))
+    VC_SESSION = os.environ.get("VC_SESSION", None)
+    ALIVE_PIC = os.environ.get("ALIVE_PIC", None)
+    PING_TEXT = os.environ.get("PING_TEXT", None)
+    ALIVE_MSG = os.environ.get("ALIVE_MSG", None)
+    DEFAULT_BIO = os.environ.get("DEFAULT_BIO", None)
+    
+    
     PRIVATE_GROUP_BOT_API_ID = int(os.environ.get("PRIVATE_GROUP_BOT_API_ID") or 0)
     PRIVATE_GROUP_ID = int(os.environ.get("PRIVATE_GROUP_ID") or 0)
     PRIVATE_CHANNEL_BOT_API_ID = int(os.environ.get("PRIVATE_CHANNEL_BOT_API_ID") or 0)
+    
+        CHROME_BIN = os.environ.get("CHROME_BIN", "/app/.apt/usr/bin/google-chrome")
+    FBAN_GROUP_ID = int(os.environ.get("FBAN_GROUP_ID") or 0)
+    
+    
     HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY", None)
     HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME", None)
     OWNER_ID = int(os.environ.get("OWNER_ID") or 0)
     PM_LOGGER_GROUP_ID = int( os.environ.get("PM_LOGGER_GROUP_ID") or os.environ.get("PM_LOGGR_BOT_API_ID") or 0 )
+    
+        OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", None)
+    TIME_JM = os.environ.get("TIME_JM", None)
+ 
+
     PLUGIN_CHANNEL = int(os.environ.get("PLUGIN_CHANNEL") or 0)
     TELEGRAPH_SHORT_NAME = os.environ.get("TELEGRAPH_SHORT_NAME", "CatArabic")
     THUMB_IMAGE = os.environ.get("THUMB_IMAGE", "https://telegra.ph/file/ca95524e4734b0d5461b5.jpg")
