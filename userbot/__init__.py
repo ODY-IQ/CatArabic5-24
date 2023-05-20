@@ -3,16 +3,16 @@ import heroku3
 
 from .Config import Config
 from .core.logger import logging
-from .core.session import iqthon
+from .core.session import catub
 from .sql_helper.globals import addgvar, delgvar, gvarstatus
 __version__ = "7.7"
 __license__ = "رخصة جنو أفيرو العمومية v3.0"
 __author__ = "القط العربي <https://github.com/odisho1997/CatArabic>"
 __copyright__ = "حقوق الطبع والنشر لـ القط العربي (C) 2020 - 2021  " + __author__
-iqthon.version = __version__
-iqthon.tgbot.version = __version__
+catub.version = __version__
+catub.tgbot.version = __version__
 LOGS = logging.getLogger("CatArabic")
-bot = iqthon
+bot = catub
 StartTime = time.time()
 catversion = "7.6"
 if Config.UPSTREAM_REPO == "CatArabic":
