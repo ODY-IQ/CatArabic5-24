@@ -37,7 +37,7 @@ except Exception as e:
 try:
     if Config.STRING_SESSION2:
         catub2 = JmthonClient(
-            bothseesion(Config.STRING_SESSION2, LOGS),
+            StringSession(Config.STRING_SESSION2, LOGS),
             api_id=Config.APP_ID,
             api_hash=Config.API_HASH,
             loop=loop,
